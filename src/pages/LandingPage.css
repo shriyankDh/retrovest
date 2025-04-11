@@ -1,0 +1,41 @@
+.landing-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px); /* subtract navbar height */
+    background: radial-gradient(circle at top, #1f1f1f, #000);
+    color: white;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .landing-hero h1 {
+    font-size: 3rem;
+    color: #00ffcc;
+    margin-bottom: 10px;
+  }
+  
+  .landing-hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .landing-hero button {
+    padding: 12px 24px;
+    background-color: #00ffcc;
+    color: #000;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .landing-hero button:hover {
+    background-color: #00ddaa;
+  }
+  

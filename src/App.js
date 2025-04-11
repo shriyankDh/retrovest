@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import ScenarioSelect from './pages/ScenarioSelect';
+import SimulationPage from './pages/SimulationPage';
+import SummaryPage from './pages/SummaryPage';
+import Navbar from './components/Navbar';
+import SignupPage from './pages/SignupPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/time-machine" element={<ScenarioSelect />} />
+        <Route path="/simulate/:scenarioId" element={<SimulationPage />} />
+        <Route path="/summary" element={<SummaryPage />} />
+        <Route path="/SignupPage" element={<SignupPage />} />
+
+      </Routes>
+    </>
   );
 }
 
