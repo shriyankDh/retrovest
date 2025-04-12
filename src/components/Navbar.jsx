@@ -11,9 +11,12 @@ const Navbar = () => {
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/time-machine">Time Machine</Link></li>
+        {/* Added Market Analysis link */}
+        <li><Link to="/market-analysis">Market Analysis</Link></li>
         <li><a href="#about">About</a></li>
-        <li ><Link to="/SignupPage">Sign Up</Link></li>
+        <li><Link to="/SignupPage">Sign Up</Link></li>
       </ul>
+      
     </nav>
   );
 };
