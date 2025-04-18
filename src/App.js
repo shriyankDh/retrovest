@@ -7,6 +7,7 @@ import SummaryPage from './pages/SummaryPage';
 import SignupPage from './pages/SignupPage';
 import Navbar from './components/Navbar';
 import MarketAnalysis from './components/MarketAnalysis';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
         <Route path="/summary" element={<SummaryPage />} />
         <Route path="/SignupPage" element={<SignupPage />} />
         <Route path="/market-analysis" element={<MarketAnalysis />} />
-       
+        <Route path="/market-analysis" element={<MarketAnalysis />} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/user-profile" element={<userprofile/>} />
       </Routes>
     </>
   );

@@ -1,67 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
+import { UserContext } from '../context/UserContext';
 import './SignupPage.css';
 
-const SignupPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: ''
-  });
+axios.defaults.withCredentials = true;
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
+function SignupPage() {
+  const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const { user, setUser } = useContext(UserContext);
 
-  const handleSubmit = (e) => {
+  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Sign up submitted:', formData);
-    // TODO: call backend API to create user
+    try {
+      const res = await axios.post('http://localhost:5000/api/auth/signup', form);
+      alert('Signup successful!');
+      setUser(res.data.user);
+    } catch (err) {
+      alert(err.response?.data?.message || 'Signup failed.');
+    }
   };
 
   return (
     <div className="signup-container">
       <div className="signup-box">
-        <h2>Create Your 🌀 RetroVest Account</h2>
-        <form onSubmit={handleSubmit}>
-          <label>Name</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="John Doe"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+        <h2>Create an Account</h2>
+        {user ? (
+          <div>
+            <p>You're already logged in as <strong>{user.name}</strong>.</p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="name">Full Name</label>
+            <input
+              name="name"
+              type="text"
+              placeholder="Your full name"
+              onChange={handleChange}
+              required
+            />
 
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="john@example.com"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+            <label htmlFor="email">Email Address</label>
+            <input
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              onChange={handleChange}
+              required
+            />
 
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="••••••••"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
+            <label htmlFor="password">Password</label>
+            <input
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              onChange={handleChange}
+              required
+            />
 
-          <button type="submit">Sign Up</button>
-        </form>
-        <p className="subtle-note">Already have an account? Login coming soon!</p>
+            <button type="submit">Sign Up</button>
+          </form>
+        )}
+        <div className="subtle-note">
+          Already have an account? <a href="/login">Login</a>
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default SignupPage;
